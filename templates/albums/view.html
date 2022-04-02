@@ -1,16 +1,35 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Gallery
+    Альбом {{ album.pk }}
+{% endblock %}
+
+{% block nav %}
+
+{#            <li class="nav-item">#}
+{#                <a class="nav-link" href={% url 'webapp:photo_update' photo.pk %}>Изменить фотографию</a>#}
+{#            </li>#}
+{##}
+{##}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link text-danger" href={% url 'webapp:photo_delete' photo.pk %}>Удалить фотографию</a>#}
+{#            </li>#}
+
+
 {% endblock %}
 
 {% block content %}
-    <header>
-        <div class="container text-center text-primary my-5">
-            <h1>Photos</h1>
-        </div>
-    </header>
     <div class="container">
+        <div class="text-center my-5">
+            <h1 class="text-success"> Просмотр альбома #{{ album.id }}</h1>
+        </div>
+        <div class="alert alert-success" role="alert">
+            <hr>
+            <h6 class="card-subtitle mb-2 text-muted">Название: {{ album.title }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Описание: {{ album.description}}</h6>
+            <hr>
+        </div>
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
             {% for photo in photos %}
                 <div class="col my-2">
@@ -36,4 +55,5 @@
             {% endfor %}
         </div>
     </div>
+
 {% endblock %}

@@ -12,7 +12,7 @@ class Album(models.Model):
                                verbose_name='Автор',
                                related_name='albums')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата-время создания")
-    isPrivate = models.BooleanField(default=False)
+    isPrivate = models.BooleanField(default=False, verbose_name='Приватность')
 
     def __str__(self):
         return f'{self.pk}.{self.title}'
@@ -37,7 +37,7 @@ class Photo(models.Model):
                               related_name='photos',
                               null=True,
                               blank=True)
-    isPrivate = models.BooleanField(default=False)
+    isPrivate = models.BooleanField(default=False, verbose_name='Приватность')
 
     class Meta:
         db_table = 'Photos'
