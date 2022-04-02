@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
@@ -6,7 +7,7 @@ from webapp.forms import AlbumForm
 from webapp.models import Album
 
 
-class AlbumView(DetailView):
+class AlbumView(LoginRequiredMixin, DetailView):
     model = Album
     template_name = 'albums/view.html'
 
@@ -17,7 +18,7 @@ class AlbumView(DetailView):
         return context
 
 
-class AlbumCreateView(CreateView):
+class AlbumCreateView(LoginRequiredMixin, CreateView):
     model = Album
     form_class = AlbumForm
     template_name = 'albums/create.html'

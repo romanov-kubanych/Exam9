@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -6,7 +7,7 @@ from webapp.forms import PhotoForm
 from webapp.models import Photo
 
 
-class PhotoIndex(ListView):
+class PhotoIndex(LoginRequiredMixin, ListView):
     model = Photo
     template_name = 'photos/index.html'
 
@@ -17,12 +18,12 @@ class PhotoIndex(ListView):
         return context
 
 
-class PhotoView(DetailView):
+class PhotoView(LoginRequiredMixin, DetailView):
     model = Photo
     template_name = 'photos/view.html'
 
 
-class PhotoCreateView(CreateView):
+class PhotoCreateView(LoginRequiredMixin, CreateView):
     model = Photo
     form_class = PhotoForm
     template_name = 'photos/create.html'
