@@ -10,10 +10,10 @@
                 <a class="nav-link" href={% url 'webapp:album_update' album.pk %}>Изменить альбом</a>
             </li>
 
-{##}
-{#            <li class="nav-item">#}
-{#                <a class="nav-link text-danger" href={% url 'webapp:photo_delete' photo.pk %}>Удалить фотографию</a>#}
-{#            </li>#}
+
+            <li class="nav-item">
+                <a class="nav-link text-danger" href={% url 'webapp:album_delete' album.pk %}>Удалить альбом</a>
+            </li>
 
 
 {% endblock %}

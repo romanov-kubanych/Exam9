@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView, UpdateView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import AlbumForm
 from webapp.models import Album
@@ -41,3 +41,10 @@ class AlbumUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('webapp:album_view', kwargs={'pk': self.object.pk})
 
+
+class AlbumDeleteView(DeleteView):
+    model = Album
+    template_name = "albums/delete.html"
+
+    def get_success_url(self):
+        return reverse('webapp:photo_index')
