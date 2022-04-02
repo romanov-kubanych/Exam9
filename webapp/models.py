@@ -13,6 +13,10 @@ class Album(models.Model):
                                related_name='albums')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата-время создания")
     isPrivate = models.BooleanField(default=False, verbose_name='Приватность')
+    selected = models.ManyToManyField(
+        User,
+        related_name='selected_albums'
+    )
 
     def __str__(self):
         return f'{self.pk}.{self.title}'
@@ -39,6 +43,10 @@ class Photo(models.Model):
                               blank=True)
     isPrivate = models.BooleanField(default=False, verbose_name='Приватность')
     token = models.CharField(max_length=100, null=True, blank=True, unique=True)
+    selected = models.ManyToManyField(
+        User,
+        related_name='selected_photos'
+    )
 
     class Meta:
         db_table = 'Photos'
