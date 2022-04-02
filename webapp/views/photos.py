@@ -80,13 +80,17 @@ class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
         return super().has_permission() or self.request.user == photo.author
 
 
-class GeneratePhotoLinkView(View):
+class GeneratePhotoLinkView(PermissionRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         photo = get_object_or_404(Photo, pk=self.kwargs.get('pk'))
         token = uuid.uuid4()
         photo.token = token
         photo.save()
         return redirect('webapp:photo_view', photo.pk)
+
+    def has_permission(self):
+        photo = get_object_or_404(Photo, pk=self.kwargs.get('pk'))
+        return self.request.user == photo.author
 
 
 class PhotoLinkView(View):
