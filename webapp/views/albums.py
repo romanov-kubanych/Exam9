@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, UpdateView
 
 from webapp.forms import AlbumForm
 from webapp.models import Album
@@ -32,4 +32,12 @@ class AlbumCreateView(CreateView):
         album.save()
         return redirect('webapp:album_view', pk=album.pk)
 
+
+class AlbumUpdateView(UpdateView):
+    model = Album
+    template_name = 'albums/update.html'
+    form_class = AlbumForm
+
+    def get_success_url(self):
+        return reverse('webapp:album_view', kwargs={'pk': self.object.pk})
 

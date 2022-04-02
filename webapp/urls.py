@@ -6,7 +6,8 @@ from webapp.views.photos import (PhotoIndex,
                                  PhotoUpdateView,
                                  PhotoDeleteView,)
 from webapp.views.albums import (AlbumView,
-                                 AlbumCreateView)
+                                 AlbumCreateView,
+                                 AlbumUpdateView)
 
 app_name = "webapp"
 
@@ -18,4 +19,5 @@ urlpatterns = [
     path('photo/<int:pk>/delete', PhotoDeleteView.as_view(), name='photo_delete'),
     path('album/<int:pk>/', AlbumView.as_view(), name='album_view'),
     path('album/add/', AlbumCreateView.as_view(), name='album_create'),
+    path('album/<int:pk>/update', AlbumUpdateView.as_view(), name='album_update'),
 ]
