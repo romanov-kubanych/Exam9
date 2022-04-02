@@ -20,7 +20,7 @@
                             <img class="avatar" src="{{ photo.photo.url }}" width="100%" height="200" alt="{{ photo.description }}">
                             <hr>
                             <h6 class="card-subtitle mb-2 text-muted">Подпись: {{ photo.description }}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Автор: {{ photo.author.first_name }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Автор: <a href="{% url 'accounts:detail' photo.author.pk %}">{{ photo.author.first_name }}</a> </h6>
                             <h6 class="card-subtitle mb-2 text-muted">Дата создания: {{ photo.created_at }}</h6>
                             <hr>
                             {% if photo.album %}
