@@ -24,7 +24,7 @@ class Album(models.Model):
 
 
 class Photo(models.Model):
-    photo = models.ImageField(upload_to='product_pics', verbose_name='Фотография')
+    photo = models.ImageField(upload_to='pictures', verbose_name='Фотография')
     description = models.CharField(max_length=500, verbose_name='Описание')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата-время создания")
     author = models.ForeignKey(User,

@@ -1,9 +1,10 @@
 from django.urls import path
 
-from webapp.views import TestView
+from webapp.views.photos import PhotoIndex
 
 app_name = "webapp"
 
 urlpatterns = [
-    path('', TestView.as_view(), name="index_view")
+    path('', PhotoIndex.as_view(), name="photo_index"),
+
 ]

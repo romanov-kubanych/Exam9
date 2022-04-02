@@ -115,8 +115,8 @@ USE_I18N = True
 USE_TZ = True
 
 
-LOGOUT_REDIRECT_URL = "webapp:index_view"
-LOGIN_REDIRECT_URL = "webapp:index_view"
+LOGOUT_REDIRECT_URL = "webapp:photo_index"
+LOGIN_REDIRECT_URL = "webapp:photo_index"
 
 LOGIN_URL = 'accounts:login'
 
