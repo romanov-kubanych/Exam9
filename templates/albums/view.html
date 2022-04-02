@@ -6,14 +6,14 @@
 
 {% block nav %}
     {% if perms.webapp.change_album %}
-            <li class="nav-item">
-                <a class="nav-link" href={% url 'webapp:album_update' album.pk %}>Изменить альбом</a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link" href={% url 'webapp:album_update' album.pk %}>Изменить альбом</a>
+        </li>
     {% endif %}
     {% if perms.webapp.delete_album %}
-            <li class="nav-item">
-                <a class="nav-link text-danger" href={% url 'webapp:album_delete' album.pk %}>Удалить альбом</a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" href={% url 'webapp:album_delete' album.pk %}>Удалить альбом</a>
+        </li>
     {% endif %}
 
 {% endblock %}
@@ -26,8 +26,24 @@
         <div class="alert alert-success" role="alert">
             <hr>
             <h6 class="card-subtitle mb-2 text-muted">Название: {{ album.title }}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Описание: {{ album.description}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Описание: {{ album.description }}</h6>
             <hr>
+            {% if user.is_authenticated %}
+                <p>Избранные</p>
+                {% if user in album.selected.all %}
+                    <a class="select-link invisible" data-album-id="{{ album.pk }}"
+                       href="{% url "webapp:select_album" album.pk %}">Добавить</a>
+                    <a class="select-link " data-album-id="{{ photo.pk }}"
+                       href="{% url "webapp:unselect_album" album.pk %}">Удалить</a>
+                    <hr>
+                {% else %}
+                    <a class="select-link " data-album-id="{{ album.pk }}"
+                       href="{% url "webapp:select_album" album.pk %}">Добавить</a>
+                    <a class="select-link invisible" data-album-id="{{ album.pk }}"
+                       href="{% url "webapp:unselect_album" album.pk %}">Удалить</a>
+                    <hr>
+                {% endif %}
+            {% endif %}
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
@@ -36,14 +52,17 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Фотография# {{ photo.id }}</h5>
-                            <img class="avatar" src="{{ photo.photo.url }}" width="100%" height="200" alt="{{ photo.description }}">
+                            <img class="avatar" src="{{ photo.photo.url }}" width="100%" height="200"
+                                 alt="{{ photo.description }}">
                             <hr>
                             <h6 class="card-subtitle mb-2 text-muted">Подпись: {{ photo.description }}</h6>
                             <h6 class="card-subtitle mb-2 text-muted">Автор: {{ photo.author.first_name }}</h6>
                             <h6 class="card-subtitle mb-2 text-muted">Дата создания: {{ photo.created_at }}</h6>
                             <hr>
                             {% if photo.album %}
-                                <h6 class="card-subtitle mb-2 text-muted">Альбом: <a href="{% url "webapp:album_view" photo.album.pk %}">{{ photo.album.title }}</a></h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Альбом: <a
+                                        href="{% url "webapp:album_view" photo.album.pk %}">{{ photo.album.title }}</a>
+                                </h6>
                             {% else %}
                                 <h6 class="card-subtitle mb-2 text-muted">Альбом: НЕТ </h6>
                             {% endif %}
@@ -55,5 +74,31 @@
             {% endfor %}
         </div>
     </div>
+    <script>
+        async function onClick(event) {
+            event.preventDefault();
 
+            const SelectLink = event.target;
+            response = await fetch(SelectLink.href);
+
+            let responseData = await response.json()
+
+            if (response.ok) {
+                const albumId = SelectLink.dataset.albumId;
+                for (SelectLinkToToggle of document.querySelectorAll(`a[data-album-id="${albumId}"]`)) {
+                    SelectLinkToToggle.classList.toggle("invisible");
+                }
+            } else {
+                alert(responseData.error);
+            }
+        }
+
+        function onLoad() {
+            for (element of document.getElementsByClassName("select-link")) {
+                element.addEventListener("click", onClick);
+            }
+        }
+
+        window.addEventListener("load", onLoad);
+    </script>
 {% endblock %}

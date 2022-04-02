@@ -12,7 +12,9 @@ from webapp.views.photos import (PhotoIndex,
 from webapp.views.albums import (AlbumView,
                                  AlbumCreateView,
                                  AlbumUpdateView,
-                                 AlbumDeleteView)
+                                 AlbumDeleteView,
+                                 AlbumSelectedView,
+                                 AlbumUnSelectedView)
 
 app_name = "webapp"
 
@@ -30,4 +32,6 @@ urlpatterns = [
     path('photos/<uuid:token>', PhotoLinkView.as_view(), name='photo-link'),
     path('photo/<int:pk>/select/', PhotoSelectedView.as_view(), name='select_photo'),
     path('photo/<int:pk>/unselect/', PhotoUnSelectedView.as_view(), name='unselect_photo'),
+    path('album/<int:pk>/select/', AlbumSelectedView.as_view(), name='select_album'),
+    path('album/<int:pk>/unselect/', AlbumUnSelectedView.as_view(), name='unselect_album'),
 ]
