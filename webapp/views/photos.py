@@ -1,6 +1,10 @@
+import uuid
+from secrets import token_urlsafe
+
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import PhotoForm
@@ -73,3 +77,22 @@ class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
     def has_permission(self):
         photo = get_object_or_404(Photo, pk=self.kwargs.get('pk'))
         return super().has_permission() or self.request.user == photo.author
+
+
+class GeneratePhotoLinkView(View):
+    def get(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, pk=self.kwargs.get('pk'))
+        token = uuid.uuid4()
+        photo.token = token
+        photo.save()
+        return redirect('webapp:photo_view', photo.pk)
+
+
+class PhotoLinkView(View):
+    def get(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, token=self.kwargs.get('token'))
+        print(photo)
+        context = {
+            'photo': photo,
+        }
+        return render(request, 'photos/view.html', context)
