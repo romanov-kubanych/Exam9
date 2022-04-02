@@ -12,14 +12,10 @@
 
 
             <li class="nav-item">
-                <a class="nav-link text-danger" href={% url 'webapp:photo_delete' photo.pk %}>Удалить фото</a>
+                <a class="nav-link text-danger" href={% url 'webapp:photo_delete' photo.pk %}>Удалить фотографию</a>
             </li>
 
-{#        {% if user.is_authenticated%}#}
-{#            <li class="nav-item">#}
-{#                <a class="nav-link text-success" href={% url 'webapp:review_create' product.pk %}>Добавить отзыв</a>#}
-{#            </li>#}
-{#        {% endif %}#}
+    
 {% endblock %}
 
 {% block content %}
