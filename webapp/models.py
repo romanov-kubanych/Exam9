@@ -38,6 +38,7 @@ class Photo(models.Model):
                               null=True,
                               blank=True)
     isPrivate = models.BooleanField(default=False, verbose_name='Приватность')
+    token = models.CharField(max_length=100, null=True, blank=True, unique=True)
 
     class Meta:
         db_table = 'Photos'
