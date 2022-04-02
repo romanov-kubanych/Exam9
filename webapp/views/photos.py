@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, CreateView
 
-# Create your views here.
-from django.views import View
-from django.views.generic import ListView
-
+from webapp.forms import PhotoForm
 from webapp.models import Photo
 
 
@@ -18,4 +17,26 @@ class PhotoIndex(ListView):
         return context
 
 
+class PhotoView(DetailView):
+    model = Photo
+    template_name = 'photos/view.html'
 
+
+class PhotoCreateView(CreateView):
+    model = Photo
+    form_class = PhotoForm
+    template_name = 'photos/create.html'
+
+    def get_success_url(self):
+        return reverse('webapp:photo_view', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        photo = form.save(commit=False)
+        photo.author = self.request.user
+        photo.save()
+        return redirect('webapp:photo_view', pk=photo.pk)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
