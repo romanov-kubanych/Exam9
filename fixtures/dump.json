@@ -1,0 +1,166 @@
+[
+{
+  "model": "webapp.album",
+  "pk": 1,
+  "fields": {
+    "title": "Album1",
+    "description": "Descrip1",
+    "author": 2,
+    "created_at": "2022-04-02T06:14:01.238Z",
+    "isPrivate": false,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 2,
+  "fields": {
+    "title": "Album2",
+    "description": "Descrip2",
+    "author": 1,
+    "created_at": "2022-04-02T06:14:19.438Z",
+    "isPrivate": true,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 3,
+  "fields": {
+    "title": "Album3",
+    "description": "Descrip3",
+    "author": 1,
+    "created_at": "2022-04-02T06:14:32.963Z",
+    "isPrivate": false,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 1,
+  "fields": {
+    "photo": "pictures/images.jfif",
+    "description": "Photo1",
+    "created_at": "2022-04-02T06:16:34.424Z",
+    "author": 1,
+    "album": 3,
+    "isPrivate": false,
+    "token": "32259a0b-f0dc-4e8a-99bb-1130b8e34572",
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "photo": "pictures/AF-S-DX-NIKKOR-18-140mm-f-3.5-5.6G-ED-VR-sample-images-1.jpg",
+    "description": "Photo2",
+    "created_at": "2022-04-02T06:17:13.726Z",
+    "author": 2,
+    "album": 1,
+    "isPrivate": false,
+    "token": "69abeb00-c673-4881-91e4-c22e709dc6b0",
+    "selected": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "photo": "pictures/1478125439.jpg",
+    "description": "Photo3",
+    "created_at": "2022-04-02T06:17:34.297Z",
+    "author": 1,
+    "album": 2,
+    "isPrivate": true,
+    "token": "c73a2eaf-132e-4284-af1c-458bff1d4ab0",
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 4,
+  "fields": {
+    "photo": "pictures/0266554465.jpeg",
+    "description": "Photo4",
+    "created_at": "2022-04-02T06:17:48.634Z",
+    "author": 1,
+    "album": 2,
+    "isPrivate": false,
+    "token": null,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 7,
+  "fields": {
+    "photo": "pictures/AF-S-DX-NIKKOR-18-140mm-f-3.5-5.6G-ED-VR-sample-images-1_wNUSvia.jpg",
+    "description": "Photo6",
+    "created_at": "2022-04-02T08:07:04.227Z",
+    "author": 1,
+    "album": 3,
+    "isPrivate": true,
+    "token": null,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 8,
+  "fields": {
+    "photo": "pictures/1478125439_8eYwfuH.jpg",
+    "description": "asdasd",
+    "created_at": "2022-04-02T09:16:46.948Z",
+    "author": 1,
+    "album": 2,
+    "isPrivate": false,
+    "token": null,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 9,
+  "fields": {
+    "photo": "pictures/images_2bOPMYp.jfif",
+    "description": "Поиск работы",
+    "created_at": "2022-04-02T09:17:07.199Z",
+    "author": 1,
+    "album": 3,
+    "isPrivate": true,
+    "token": "b3c14825-7815-4f81-bdc6-af7af5aff2c7",
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 11,
+  "fields": {
+    "photo": "pictures/AF-S-DX-NIKKOR-18-140mm-f-3.5-5.6G-ED-VR-sample-images-1_SpLrHHF.jpg",
+    "description": "apple",
+    "created_at": "2022-04-02T10:14:29.206Z",
+    "author": 2,
+    "album": 1,
+    "isPrivate": true,
+    "token": null,
+    "selected": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 12,
+  "fields": {
+    "photo": "pictures/images_EC9Sc6e.jfif",
+    "description": "apple",
+    "created_at": "2022-04-02T11:31:20.859Z",
+    "author": 2,
+    "album": 1,
+    "isPrivate": false,
+    "token": "c07167e7-b50d-4786-9f39-75d3b040845c",
+    "selected": []
+  }
+}
+]
