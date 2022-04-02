@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block nav %}
-{#        {% if perms.webapp.change_product %}#}
-{#            <li class="nav-item">#}
-{#                <a class="nav-link" href={% url 'webapp:product_update' product.pk %}>Изменить товар</a>#}
-{#            </li>#}
-{#        {% endif %}#}
-{#        {% if perms.webapp.delete_product %}#}
-{#            <li class="nav-item">#}
-{#                <a class="nav-link text-danger" href={% url 'webapp:product_delete' product.pk %}>Удалить товар</a>#}
-{#            </li>#}
-{#        {% endif %}#}
+
+            <li class="nav-item">
+                <a class="nav-link" href={% url 'webapp:photo_update' photo.pk %}>Изменить фотографию</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link text-danger" href={% url 'webapp:photo_delete' photo.pk %}>Удалить фото</a>
+            </li>
+
 {#        {% if user.is_authenticated%}#}
 {#            <li class="nav-item">#}
 {#                <a class="nav-link text-success" href={% url 'webapp:review_create' product.pk %}>Добавить отзыв</a>#}
@@ -36,6 +36,8 @@
             <hr>
             {% if photo.album %}
                 <h6 class="card-subtitle mb-2 text-muted">Альбом: {{ photo.album.title }}</h6>
+            {% else %}
+                <h6 class="card-subtitle mb-2 text-muted">Альбом: НЕТ </h6>
             {% endif %}
         </div>
     </div>

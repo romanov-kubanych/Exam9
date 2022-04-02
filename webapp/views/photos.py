@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import PhotoForm
 from webapp.models import Photo
@@ -40,3 +40,25 @@ class PhotoCreateView(CreateView):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+
+
+class PhotoUpdateView(UpdateView):
+    model = Photo
+    template_name = 'photos/update.html'
+    form_class = PhotoForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('webapp:photo_view', kwargs={'pk': self.object.pk})
+
+
+class PhotoDeleteView(DeleteView):
+    model = Photo
+    template_name = "photos/delete.html"
+
+    def get_success_url(self):
+        return reverse('webapp:photo_index')

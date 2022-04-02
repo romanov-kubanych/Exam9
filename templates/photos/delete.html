@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Удаление фото
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <h2 class="text-success text-center mt-3">Удалить фотографию "{{ photo.id }}"</h2>
+            <img class="avatar" src="{{ photo.photo.url }}" width="250" height="200" alt="{{ photo.description }}">
+            <hr>
+            <h6>Описание: {{ photo.description }}</h6>
+            <input class="btn btn-danger w-100 mt-4" type="submit" value="Да">
+        </form>
+        <a class="my-3 btn btn-success w-100" href="{% url "webapp:photo_view" photo.pk %}">Нет</a>
+    </div>
+
+{% endblock %}
